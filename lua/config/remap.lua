@@ -1,7 +1,5 @@
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>fe', ':Lex<CR>')
-
--- for shifting the selected lines up or down
+vim.keymap.set('n', '<leader>fe', vim.cmd.Ex)
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 

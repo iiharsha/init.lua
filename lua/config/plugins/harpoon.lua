@@ -1,22 +1,30 @@
 return {
-	"ThePrimeagen/harpoon",
-	branch = "harpoon2",
-	config = function()
-		local harpoon = require("harpoon")
-		harpoon:setup()
+  'ThePrimeagen/harpoon',
+  branch = 'harpoon2',
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  init = function()
+    local harpoon = require 'harpoon'
+    harpoon:setup {
+      settings = {
+        save_on_toggle = true,
+        sync_on_ui_close = true,
+        key = function()
+          return vim.loop.cwd()
+        end,
+      },
+    }
 
-		vim.keymap.set("n", "<m-h><m-m>", function()
-			harpoon:list():add()
-		end)
-
-		vim.keymap.set("n", "<m-h><m-l>", function()
-			harpoon.ui:toggle_quick_menu(harpoon:list())
-		end)
-
-		for _, idx in ipairs({ 1, 2, 3, 4, 5 }) do
-			vim.keymap.set("n", string.format("<space>%d", idx), function()
-				harpoon:list():select(idx)
-			end)
-		end
-	end,
+    vim.keymap.set('n', '<leader>a', function()
+      harpoon:list():add()
+    end)
+    vim.keymap.set('n', '<C-e>', function()
+      harpoon.ui:toggle_quick_menu(harpoon:list())
+    end)
+    vim.keymap.set('n', '<C-S-l>', function()
+      harpoon:list():next()
+    end)
+    vim.keymap.set('n', '<C-S-h>', function()
+      harpoon:list():prev()
+    end)
+  end,
 }
