@@ -1,5 +1,5 @@
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>fe', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>fe', vim.cmd.Oil)
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
@@ -34,6 +34,6 @@ vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 local opts = { noremap = true, silent = false }
 vim.keymap.set('n', ';', ':', opts)
 
-vim.keymap.set('n', '<space>ca', function()
+vim.keymap.set('n', '<leader>ca', function()
   vim.lsp.buf.code_action { apply = true }
 end)
