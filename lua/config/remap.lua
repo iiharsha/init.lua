@@ -33,7 +33,3 @@ vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- command line write smoothening
 local opts = { noremap = true, silent = false }
 vim.keymap.set('n', ';', ':', opts)
-
-vim.keymap.set('n', '<leader>ca', function()
-  vim.lsp.buf.code_action { apply = true }
-end)
