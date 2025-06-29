@@ -1,8 +1,8 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason.nvim',
+    'mason-org/mason-lspconfig.nvim',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
@@ -33,12 +33,13 @@ return {
     require('fidget').setup {}
     require('mason').setup()
     require('mason-lspconfig').setup {
+      automatic_installation = false,
+      automatic_enable = false,
       ensure_installed = {
         'lua_ls',
         'rust_analyzer',
         'gopls',
         'ts_ls',
-        'pyright',
       },
       handlers = {
         function(server_name) -- default handler (optional)
@@ -47,18 +48,20 @@ return {
           }
         end,
 
-        ['ts_ls'] = function()
-          local lspconfig = require 'lspconfig'
-          lspconfig.ts_ls.setup {
+        ['svelte'] = function()
+          require('lspconfig')['svelte'].setup {
             capabilities = capabilities,
-            init_options = {
-              preferences = {
-                disableSuggestions = true, -- Disable suggestions
-              },
-            },
+            on_attach = function(client, bufnr)
+              vim.api.nvim_create_autocmd('BufWritePost', {
+                pattern = { '*.js', '*.ts' },
+                callback = function(ctx)
+                  -- this bad boy updates imports between svelte and ts/js files
+                  client.notify('$/onDidChangeTsOrJsFile', { uri = ctx.match })
+                end,
+              })
+            end,
           }
         end,
-
         ['lua_ls'] = function()
           local lspconfig = require 'lspconfig'
           lspconfig.lua_ls.setup {
@@ -76,6 +79,25 @@ return {
       },
     }
 
+    require('lspconfig').dartls.setup {
+      capabilities = capabilities,
+      cmd = {
+        '/home/theharsha/dart/dart-sdk/bin/dart',
+        '/home/theharsha/dart/dart-sdk/bin/snapshots/analysis_server.dart.snapshot',
+        '--lsp',
+      },
+      filetypes = { 'dart' },
+      root_dir = function(fname)
+        local util = require 'lspconfig.util'
+        return util.root_pattern 'pubspec.yaml'(fname) or vim.fs.dirname(fname)
+      end,
+      settings = {
+        dart = {
+          enableSdkFormatter = true,
+          completeFunctionCalls = true,
+        },
+      },
+    }
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
     cmp.setup {

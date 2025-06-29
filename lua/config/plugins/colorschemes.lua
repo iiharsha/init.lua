@@ -1,15 +1,23 @@
 return {
   {
+    "vague2k/vague.nvim",
+    config = function()
+      require("vague").setup({ transparent = true })
+      vim.cmd("colorscheme vague")
+    end
+  },
+  {
     'rebelot/kanagawa.nvim',
     config = function()
       require('kanagawa').setup {
+        transparent = true,
         colors = {
           palette = {},
           theme = {
             dragon = {},
             all = {
               ui = {
-                bg = '#050505',
+                -- bg = '#050505',
                 bg_gutter = 'none',
               },
             },
@@ -43,10 +51,10 @@ return {
           }
         end,
       }
-      vim.cmd 'colorscheme kanagawa-dragon'
+      -- vim.cmd 'colorscheme kanagawa-dragon'
     end,
   },
-
+  -- the roses
   {
     'rose-pine/neovim',
     name = 'rose-pine',
@@ -60,6 +68,7 @@ return {
       -- vim.cmd.colorscheme 'rose-pine'
     end,
   },
+  -- the old gruvbox
   {
     'ellisonleao/gruvbox.nvim',
     name = 'gruvbox',
@@ -82,7 +91,7 @@ return {
         invert_tabline = false,
         invert_intend_guides = false,
         inverse = true, -- invert background for search, diffs, statuslines and errors
-        contrast = '', -- can be "hard", "soft" or empty string
+        contrast = '',  -- can be "hard", "soft" or empty string
         palette_overrides = {},
         overrides = {},
         dim_inactive = false,
@@ -90,6 +99,7 @@ return {
       }
     end,
   },
+  -- catppucin colorscheme
   {
     'catppuccin/nvim',
     name = 'catppuccin',

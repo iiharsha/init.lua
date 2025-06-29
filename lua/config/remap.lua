@@ -1,7 +1,10 @@
 vim.g.mapleader = ' '
 vim.keymap.set('n', '<leader>fe', vim.cmd.Oil)
+vim.keymap.set('n', '<leader>e', "<cmd>NvimTreeToggle<CR>", { desc = "Toggle nvim-tree file explorer" })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
 
 vim.keymap.set('n', 'J', 'mzJ`z') --joins lines
 --scrolling functions
@@ -33,3 +36,6 @@ vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- command line write smoothening
 local opts = { noremap = true, silent = false }
 vim.keymap.set('n', ';', ':', opts)
+
+-- insert mode moving
+vim.keymap.set('i', '<C-l', '<Right>', { noremap = true })
