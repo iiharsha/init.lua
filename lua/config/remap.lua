@@ -1,41 +1,43 @@
+local set = vim.keymap.set
+
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>fe', vim.cmd.Oil)
-vim.keymap.set('n', '<leader>e', "<cmd>NvimTreeToggle<CR>", { desc = "Toggle nvim-tree file explorer" })
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
-vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
+set('n', '<leader><leader>x', '<cmd>source %<CR>')
+set('n', '<leader>x', ':.lua<CR>')
+set('v', '<leader>x', ':lua<CR>')
 
-vim.keymap.set('n', 'J', 'mzJ`z') --joins lines
+set('v', 'J', ":m '>+1<CR>gv=gv")
+set('v', 'K', ":m '<-2<CR>gv=gv")
+
+set('n', '<leader>ca', vim.lsp.buf.code_action)
+
+set('n', 'J', 'mzJ`z') --joins lines
 --scrolling functions
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
+set('n', '<C-d>', '<C-d>zz')
+set('n', '<C-u>', '<C-u>zz')
 -- navigating for the search results
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
+set('n', 'n', 'nzzzv')
+set('n', 'N', 'Nzzzv')
 
 -- clipboard remaps
-vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
-vim.keymap.set('n', '<leader>Y', [["+Y]])
+set({ 'n', 'v' }, '<leader>y', [["+y]])
+set('n', '<leader>Y', [["+Y]])
 
-vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
+set({ 'n', 'v' }, '<leader>d', [["_d]])
 
-vim.keymap.set('i', 'jj', '<Esc>')
+set('i', 'jj', '<Esc>')
 
-vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
-vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
+set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
+set('n', '<leader>f', vim.lsp.buf.format)
 
-vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>zz')
-vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>zz')
-vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
-vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
+set('n', '<C-k>', '<cmd>cnext<CR>zz')
+set('n', '<C-j>', '<cmd>cprev<CR>zz')
+set('n', '<leader>k', '<cmd>lnext<CR>zz')
+set('n', '<leader>j', '<cmd>lprev<CR>zz')
 
 -- search and replace
-vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- command line write smoothening
 local opts = { noremap = true, silent = false }
-vim.keymap.set('n', ';', ':', opts)
-
--- insert mode moving
-vim.keymap.set('i', '<C-l', '<Right>', { noremap = true })
+set('n', ';', ':', opts)

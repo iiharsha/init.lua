@@ -2,22 +2,22 @@ return {
   {
     "vague2k/vague.nvim",
     config = function()
-      require("vague").setup({ transparent = true })
-      vim.cmd("colorscheme vague")
+      require("vague").setup({ transparent = false })
+      -- vim.cmd("colorscheme vague")
     end
   },
   {
     'rebelot/kanagawa.nvim',
     config = function()
       require('kanagawa').setup {
-        transparent = true,
+        transparent = false,
         colors = {
           palette = {},
           theme = {
             dragon = {},
             all = {
               ui = {
-                -- bg = '#050505',
+                bg = '#1a1a1a',
                 bg_gutter = 'none',
               },
             },
@@ -103,39 +103,41 @@ return {
   {
     'catppuccin/nvim',
     name = 'catppuccin',
-    opts = {
-      term_colors = true,
-      transparent_background = false,
-      styles = {
-        comments = {},
-        conditionals = {},
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-      },
-      color_overrides = {
-        mocha = {
-          base = '#000000',
-          mantle = '#000000',
-          crust = '#000000',
+    config = function()
+      require("catppuccin").setup({
+        term_colors = true,
+        transparent_background = false,
+        styles = {
+          comments = {},
+          conditionals = {},
+          loops = {},
+          functions = {},
+          keywords = {},
+          strings = {},
+          variables = {},
+          numbers = {},
+          booleans = {},
+          properties = {},
+          types = {},
         },
-      },
-      integrations = {
-        telescope = {
-          enabled = true,
-          style = 'nvchad',
+        color_overrides = {
+          mocha = {
+            base = '#000000',
+            mantle = '#000000',
+            crust = '#000000',
+          },
         },
-        dropbar = {
-          enabled = true,
-          color_mode = true,
+        integrations = {
+          telescope = {
+            enabled = true,
+            style = 'nvchad',
+          },
+          dropbar = {
+            enabled = true,
+            color_mode = true,
+          },
         },
-      },
-    },
+      })
+    end,
   },
 }

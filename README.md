@@ -1,8 +1,13 @@
-### Simple neovim config
-Supports LSP, Treesitter, Telescope, and more.
+# My Neovim Config
 
-### Installation
-1. Clone this repo to `~/.config/nvim`
+The best editing experience for neovim is to build your own config.
+This config is best suited for me feel free to use it or modify it to your
+liking.
 
-Edit this config however you like.
-:)
+# Dependencies
+
+- Neovim >= 0.11.3
+- luarocks
+- yazi (for file manager)
+- plenary
+- ripgrep
